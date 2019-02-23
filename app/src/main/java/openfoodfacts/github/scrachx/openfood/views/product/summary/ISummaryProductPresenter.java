@@ -29,7 +29,7 @@ public interface ISummaryProductPresenter {
 
         void loadAdditives();
 
-//        void loadRecommendations();
+        void loadRecommendations();
     }
 
     interface View {
@@ -51,7 +51,7 @@ public interface ISummaryProductPresenter {
 
         void showAdditivesState(@ProductInfoState String state);
 
-//        void showRecommendations(List<CategoryName> categories);
+        void showRecommendations(List<CategoryName> categories);
     }
 
 }

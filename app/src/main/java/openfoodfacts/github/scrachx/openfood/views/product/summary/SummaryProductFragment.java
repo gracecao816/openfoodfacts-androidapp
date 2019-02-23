@@ -82,6 +82,7 @@ import openfoodfacts.github.scrachx.openfood.views.AddProductActivity;
 import openfoodfacts.github.scrachx.openfood.views.FullScreenImage;
 import openfoodfacts.github.scrachx.openfood.views.ProductBrowsingListActivity;
 import openfoodfacts.github.scrachx.openfood.views.ProductComparisonActivity;
+import openfoodfacts.github.scrachx.openfood.views.ProductListsActivity;
 import openfoodfacts.github.scrachx.openfood.views.adapters.NutrientLevelListAdapter;
 import openfoodfacts.github.scrachx.openfood.views.customtabs.CustomTabActivityHelper;
 import openfoodfacts.github.scrachx.openfood.views.customtabs.CustomTabsHelper;
@@ -762,53 +763,53 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
         }
     }
 
-//    @Override
-//    public void showRecommendations(List<CategoryName> categories) {
-//        recommendation.setClickable(true);
-//        if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'C') {
-//            //show list of category with A, B rating
-//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
-//                CategoryName category = categories.get(i);
-//                CharSequence categoryName = getCategoriesTag(category);
-//                if (categoryName != null) {
-//                    // Add category name to text view
-//                    categoryProduct.append(categoryName);
-//                    // Add a comma if not the last item
-//                    if (i != lastIndex) {
-//                        categoryProduct.append(", ");
-//                    }
-//                }
-//            }
-//        } else if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'D') {
-//            //show list of category with A, B, C rating
-//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
-//                CategoryName category = categories.get(i);
-//                CharSequence categoryName = getCategoriesTag(category);
-//                if (categoryName != null) {
-//                    // Add category name to text view
-//                    categoryProduct.append(categoryName);
-//                    // Add a comma if not the last item
-//                    if (i != lastIndex) {
-//                        categoryProduct.append(", ");
-//                    }
-//                }
-//            }
-//        } else if (Utils.getImageGrade((product.getNutritionGradeFr())) == 'E') {
-//            //show list of category with A, B, C, D
-//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
-//                CategoryName category = categories.get(i);
-//                CharSequence categoryName = getCategoriesTag(category);
-//                if (categoryName != null) {
-//                    // Add category name to text view
-//                    categoryProduct.append(categoryName);
-//                    // Add a comma if not the last item
-//                    if (i != lastIndex) {
-//                        categoryProduct.append(", ");
-//                    }
-//                }
-//            }
-//        }
-//    }
+    @Override
+    public void showRecommendations(List<CategoryName> categories) {
+        recommendation.setClickable(true);
+        if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'C') {
+            //show list of category with A, B rating
+            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+                CategoryName category = categories.get(i);
+                CharSequence categoryName = getCategoriesTag(category);
+                if (categoryName != null) {
+                    // Add category name to text view
+                    categoryProduct.append(categoryName);
+                    // Add a comma if not the last item
+                    if (i != lastIndex) {
+                        categoryProduct.append(", ");
+                    }
+                }
+            }
+        } else if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'D') {
+            //show list of category with A, B, C rating
+            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+                CategoryName category = categories.get(i);
+                CharSequence categoryName = getCategoriesTag(category);
+                if (categoryName != null) {
+                    // Add category name to text view
+                    categoryProduct.append(categoryName);
+                    // Add a comma if not the last item
+                    if (i != lastIndex) {
+                        categoryProduct.append(", ");
+                    }
+                }
+            }
+        } else if (Utils.getImageGrade((product.getNutritionGradeFr())) == 'E') {
+            //show list of category with A, B, C, D
+            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+                CategoryName category = categories.get(i);
+                CharSequence categoryName = getCategoriesTag(category);
+                if (categoryName != null) {
+                    // Add category name to text view
+                    categoryProduct.append(categoryName);
+                    // Add a comma if not the last item
+                    if (i != lastIndex) {
+                        categoryProduct.append(", ");
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public void showAllergens(List<AllergenName> allergens) {
@@ -1057,6 +1058,16 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
     @OnClick(R.id.compare_product_button)
     public void onCompareProductButtonClick() {
         Intent intent = new Intent(getContext(), ProductComparisonActivity.class);
+        intent.putExtra("product_found", true);
+        ArrayList<Product> productsToCompare = new ArrayList<>();
+        productsToCompare.add(product);
+        intent.putExtra("products_to_compare", productsToCompare);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btReccomendation)
+    public void onRecommendationClick() {
+        Intent intent = new Intent(getContext(), ProductListsActivity.class);
         intent.putExtra("product_found", true);
         ArrayList<Product> productsToCompare = new ArrayList<>();
         productsToCompare.add(product);

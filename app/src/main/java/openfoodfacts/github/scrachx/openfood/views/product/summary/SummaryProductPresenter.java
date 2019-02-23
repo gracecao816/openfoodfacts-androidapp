@@ -148,38 +148,38 @@ public class SummaryProductPresenter implements ISummaryProductPresenter.Actions
         }
     }
 
-//    public void loadRecommendations() {
-//        List<String> categoriesTags = product.getCategoriesTags();
-//        if (categoriesTags != null && !categoriesTags.isEmpty()) {
-//            disposable.add(
-//                    Observable.fromArray(categoriesTags.toArray(new String[categoriesTags.size()]))
-//                            .flatMapSingle(tag -> repository.getCategoryByTagAndLanguageCode(tag, languageCode)
-//                                    .flatMap(categoryName -> {
-//                                        if (categoryName.isNull()) {
-//                                            return repository.getCategoryByTagAndDefaultLanguageCode(tag);
-//                                        } else {
-//                                            return Single.just(categoryName);
-//                                        }
-//                                    }))
-//                            .toList()
-//                            .doOnSubscribe(d -> view.showCategoriesState(ProductInfoState.LOADING))
-//                            .subscribeOn(Schedulers.io())
-//                            .observeOn(AndroidSchedulers.mainThread())
-//                            .subscribe(categories -> {
-//                                if (categories.isEmpty()) {
-//                                    view.showCategoriesState(ProductInfoState.EMPTY);
-//                                } else {
-//                                    view.showRecommendations(categories);
-//                                }
-//                            }, e -> {
-//                                e.printStackTrace();
-//                                view.showCategoriesState(ProductInfoState.EMPTY);
-//                            })
-//            );
-//        } else {
-//            view.showCategoriesState(ProductInfoState.EMPTY);
-//        }
-//    }
+    public void loadRecommendations() {
+        List<String> categoriesTags = product.getCategoriesTags();
+        if (categoriesTags != null && !categoriesTags.isEmpty()) {
+            disposable.add(
+                    Observable.fromArray(categoriesTags.toArray(new String[categoriesTags.size()]))
+                            .flatMapSingle(tag -> repository.getCategoryByTagAndLanguageCode(tag, languageCode)
+                                    .flatMap(categoryName -> {
+                                        if (categoryName.isNull()) {
+                                            return repository.getCategoryByTagAndDefaultLanguageCode(tag);
+                                        } else {
+                                            return Single.just(categoryName);
+                                        }
+                                    }))
+                            .toList()
+                            .doOnSubscribe(d -> view.showCategoriesState(ProductInfoState.LOADING))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(categories -> {
+                                if (categories.isEmpty()) {
+                                    view.showCategoriesState(ProductInfoState.EMPTY);
+                                } else {
+                                    view.showRecommendations(categories);
+                                }
+                            }, e -> {
+                                e.printStackTrace();
+                                view.showCategoriesState(ProductInfoState.EMPTY);
+                            })
+            );
+        } else {
+            view.showCategoriesState(ProductInfoState.EMPTY);
+        }
+    }
 
     @Override
     public void loadCountries() {
