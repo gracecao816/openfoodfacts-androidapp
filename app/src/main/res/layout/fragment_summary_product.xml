@@ -226,10 +226,13 @@
                     android:id="@+id/btReccomendation"
                     android:layout_width="53dp"
                     android:layout_height="64dp"
+                    android:layout_marginEnd="320dp"
+                    android:layout_marginRight="320dp"
                     android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/lightbulb"
-                    tools:layout_editor_absoluteX="35dp"
-                    tools:layout_editor_absoluteY="18dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/lightbulb" />
 
             </android.support.constraint.ConstraintLayout>
 

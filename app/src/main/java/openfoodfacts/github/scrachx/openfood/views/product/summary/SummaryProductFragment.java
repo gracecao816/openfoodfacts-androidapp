@@ -59,6 +59,7 @@ import openfoodfacts.github.scrachx.openfood.R;
 import openfoodfacts.github.scrachx.openfood.fragments.BaseFragment;
 import openfoodfacts.github.scrachx.openfood.models.AdditiveName;
 import openfoodfacts.github.scrachx.openfood.models.AllergenName;
+import openfoodfacts.github.scrachx.openfood.models.Category;
 import openfoodfacts.github.scrachx.openfood.models.CategoryName;
 import openfoodfacts.github.scrachx.openfood.models.CountryName;
 import openfoodfacts.github.scrachx.openfood.models.LabelName;
@@ -197,6 +198,8 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
     TextView customerService;
     @BindView(R.id.compare_product_button)
     Button compareProductButton;
+    @BindView(R.id.btReccomendation)
+    ImageView recommendation;
     private State state;
     private Product product;
     private OpenFoodAPIClient api;
@@ -321,6 +324,7 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
         presenter.loadCategories();
         presenter.loadLabels();
         presenter.loadCountries();
+//        presenter.loadRecommendations();
         additiveProduct.setText(bold(getString(R.string.txtAdditives)));
         presenter.loadAdditives();
 
@@ -758,6 +762,54 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
         }
     }
 
+//    @Override
+//    public void showRecommendations(List<CategoryName> categories) {
+//        recommendation.setClickable(true);
+//        if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'C') {
+//            //show list of category with A, B rating
+//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+//                CategoryName category = categories.get(i);
+//                CharSequence categoryName = getCategoriesTag(category);
+//                if (categoryName != null) {
+//                    // Add category name to text view
+//                    categoryProduct.append(categoryName);
+//                    // Add a comma if not the last item
+//                    if (i != lastIndex) {
+//                        categoryProduct.append(", ");
+//                    }
+//                }
+//            }
+//        } else if (Utils.getImageGrade(product.getNutritionGradeFr()) == 'D') {
+//            //show list of category with A, B, C rating
+//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+//                CategoryName category = categories.get(i);
+//                CharSequence categoryName = getCategoriesTag(category);
+//                if (categoryName != null) {
+//                    // Add category name to text view
+//                    categoryProduct.append(categoryName);
+//                    // Add a comma if not the last item
+//                    if (i != lastIndex) {
+//                        categoryProduct.append(", ");
+//                    }
+//                }
+//            }
+//        } else if (Utils.getImageGrade((product.getNutritionGradeFr())) == 'E') {
+//            //show list of category with A, B, C, D
+//            for (int i = 0, lastIndex = categories.size() - 1; i <= lastIndex; i++) {
+//                CategoryName category = categories.get(i);
+//                CharSequence categoryName = getCategoriesTag(category);
+//                if (categoryName != null) {
+//                    // Add category name to text view
+//                    categoryProduct.append(categoryName);
+//                    // Add a comma if not the last item
+//                    if (i != lastIndex) {
+//                        categoryProduct.append(", ");
+//                    }
+//                }
+//            }
+//        }
+//    }
+
     @Override
     public void showAllergens(List<AllergenName> allergens) {
         List<String> productAllergens = product.getAllergensHierarchy();
@@ -837,6 +889,7 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
 
         labelProduct.append(getLabelTag(labels.get(labels.size() - 1)));
     }
+
 
     @Override
     public void showCountries(List<CountryName> countries) {
