@@ -82,6 +82,7 @@ import openfoodfacts.github.scrachx.openfood.views.AddProductActivity;
 import openfoodfacts.github.scrachx.openfood.views.FullScreenImage;
 import openfoodfacts.github.scrachx.openfood.views.ProductBrowsingListActivity;
 import openfoodfacts.github.scrachx.openfood.views.ProductComparisonActivity;
+import openfoodfacts.github.scrachx.openfood.views.ProductGoodCategoryListActivity;
 import openfoodfacts.github.scrachx.openfood.views.ProductListsActivity;
 import openfoodfacts.github.scrachx.openfood.views.adapters.NutrientLevelListAdapter;
 import openfoodfacts.github.scrachx.openfood.views.customtabs.CustomTabActivityHelper;
@@ -1067,7 +1068,7 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
 
     @OnClick(R.id.btReccomendation)
     public void onRecommendationClick() {
-        Intent intent = new Intent(getContext(), ProductListsActivity.class);
+        Intent intent = new Intent(getContext(), ProductGoodCategoryListActivity.class);
         intent.putExtra("product_found", true);
         ArrayList<Product> productsToCompare = new ArrayList<>();
         productsToCompare.add(product);
