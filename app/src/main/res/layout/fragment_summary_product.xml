@@ -222,6 +222,15 @@
                     android:visibility="gone"
                     />
 
+                <ImageButton
+                    android:id="@+id/btReccomendation"
+                    android:layout_width="53dp"
+                    android:layout_height="64dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/lightbulb"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="18dp" />
+
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.CardView
